@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		3A1789A222CFE3AC0095A1EE /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A122CFE3AC0095A1EE /* RootCoordinator.swift */; };
 		3A1789A522CFE3F50095A1EE /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A422CFE3F50095A1EE /* Coordinator.swift */; };
+		3A1789A822CFE4400095A1EE /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A722CFE4400095A1EE /* PokemonListViewController.swift */; };
 		3A1789AA22CFE4EE0095A1EE /* ListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A922CFE4EE0095A1EE /* ListViewCoordinator.swift */; };
+		3A1789AD22CFFD100095A1EE /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789AC22CFFD100095A1EE /* Pokemon.swift */; };
+		3A1789B222D0D9590095A1EE /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789B122D0D9590095A1EE /* UIView+Extensions.swift */; };
 		3A2FBD5722CA73F500E4F92F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD5622CA73F500E4F92F /* AppDelegate.swift */; };
 		3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD5822CA73F500E4F92F /* ViewController.swift */; };
 		3A2FBD5C22CA73F500E4F92F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A2FBD5A22CA73F500E4F92F /* Main.storyboard */; };
@@ -17,15 +20,19 @@
 		3A2FBD6122CA73F800E4F92F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A2FBD5F22CA73F800E4F92F /* LaunchScreen.storyboard */; };
 		3A2FBD6D22CA770A00E4F92F /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD6C22CA770A00E4F92F /* APIEndpoint.swift */; };
 		3A2FBD6F22CA773700E4F92F /* APIJSONClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD6E22CA773700E4F92F /* APIJSONClient.swift */; };
+		3A2FBD7122CA775C00E4F92F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7022CA775C00E4F92F /* Result.swift */; };
 		3A2FBD7522CA782800E4F92F /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7422CA782800E4F92F /* APIError.swift */; };
 		3A2FBD7822CA78AC00E4F92F /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7722CA78AC00E4F92F /* NSObject.swift */; };
 		3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */; };
+		3A2FBD7D22CA797600E4F92F /* PokemonAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3A1789A122CFE3AC0095A1EE /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		3A1789A422CFE3F50095A1EE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3A1789A722CFE4400095A1EE /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		3A1789A922CFE4EE0095A1EE /* ListViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCoordinator.swift; sourceTree = "<group>"; };
+		3A1789AC22CFFD100095A1EE /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		3A1789B122D0D9590095A1EE /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		3A2FBD5322CA73F500E4F92F /* Pokemoncito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokemoncito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2FBD5622CA73F500E4F92F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,9 +43,11 @@
 		3A2FBD6222CA73F800E4F92F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A2FBD6C22CA770A00E4F92F /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		3A2FBD6E22CA773700E4F92F /* APIJSONClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIJSONClient.swift; sourceTree = "<group>"; };
+		3A2FBD7022CA775C00E4F92F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3A2FBD7422CA782800E4F92F /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		3A2FBD7722CA78AC00E4F92F /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResourceProvider.swift; sourceTree = "<group>"; };
+		3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAPIProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +76,22 @@
 				3A1789A422CFE3F50095A1EE /* Coordinator.swift */,
 			);
 			path = "for-Presentation";
+			sourceTree = "<group>";
+		};
+		3A1789A622CFE41A0095A1EE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3A1789A722CFE4400095A1EE /* PokemonListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3A1789AB22CFFCF70095A1EE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A1789AC22CFFD100095A1EE /* Pokemon.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3A2FBD4A22CA73F500E4F92F = {
@@ -101,9 +126,21 @@
 		3A2FBD6822CA763500E4F92F /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3A1789AB22CFFCF70095A1EE /* Models */,
+				3A1789A622CFE41A0095A1EE /* Controllers */,
 				3A1789A022CFE39E0095A1EE /* Coordinators */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		3A2FBD6A22CA76E500E4F92F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A2FBD6C22CA770A00E4F92F /* APIEndpoint.swift */,
+				3A2FBD6E22CA773700E4F92F /* APIJSONClient.swift */,
+				3A2FBD7022CA775C00E4F92F /* Result.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3A2FBD7222CA780C00E4F92F /* Protocols */ = {
@@ -130,6 +167,14 @@
 				3A1789B122D0D9590095A1EE /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3A2FBD7B22CA794400E4F92F /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */,
+			);
+			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,13 +251,17 @@
 				3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */,
 				3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */,
 				3A1789A222CFE3AC0095A1EE /* RootCoordinator.swift in Sources */,
+				3A2FBD7122CA775C00E4F92F /* Result.swift in Sources */,
 				3A1789AA22CFE4EE0095A1EE /* ListViewCoordinator.swift in Sources */,
 				3A1789B222D0D9590095A1EE /* UIView+Extensions.swift in Sources */,
+				3A1789A822CFE4400095A1EE /* PokemonListViewController.swift in Sources */,
 				3A2FBD6F22CA773700E4F92F /* APIJSONClient.swift in Sources */,
+				3A1789AD22CFFD100095A1EE /* Pokemon.swift in Sources */,
 				3A2FBD7822CA78AC00E4F92F /* NSObject.swift in Sources */,
 				3A1789A522CFE3F50095A1EE /* Coordinator.swift in Sources */,
 				3A2FBD6D22CA770A00E4F92F /* APIEndpoint.swift in Sources */,
 				3A2FBD7522CA782800E4F92F /* APIError.swift in Sources */,
+				3A2FBD7D22CA797600E4F92F /* PokemonAPIProvider.swift in Sources */,
 				3A2FBD5722CA73F500E4F92F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

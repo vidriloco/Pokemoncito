@@ -11,6 +11,7 @@ import UIKit
 class ListViewCoordinator: Coordinator {
     private let presenter: UINavigationController
     
+    private var devProvider: PokemonAPIProvider
 
     init(presenter: UINavigationController) {
         self.presenter = presenter
@@ -18,6 +19,8 @@ class ListViewCoordinator: Coordinator {
     }
     
     func start() {
+        let pokemonListViewController = PokemonListViewController(apiDevProvider: devProvider)
+        presenter.pushViewController(pokemonListViewController, animated: true)
 
     }
 }
