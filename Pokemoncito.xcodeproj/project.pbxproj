@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1789A222CFE3AC0095A1EE /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A122CFE3AC0095A1EE /* RootCoordinator.swift */; };
+		3A1789A522CFE3F50095A1EE /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A422CFE3F50095A1EE /* Coordinator.swift */; };
+		3A1789AA22CFE4EE0095A1EE /* ListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A922CFE4EE0095A1EE /* ListViewCoordinator.swift */; };
 		3A2FBD5722CA73F500E4F92F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD5622CA73F500E4F92F /* AppDelegate.swift */; };
 		3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD5822CA73F500E4F92F /* ViewController.swift */; };
 		3A2FBD5C22CA73F500E4F92F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A2FBD5A22CA73F500E4F92F /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A1789A122CFE3AC0095A1EE /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		3A1789A422CFE3F50095A1EE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3A1789A922CFE4EE0095A1EE /* ListViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCoordinator.swift; sourceTree = "<group>"; };
 		3A1789B122D0D9590095A1EE /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		3A2FBD5322CA73F500E4F92F /* Pokemoncito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokemoncito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2FBD5622CA73F500E4F92F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +52,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A1789A022CFE39E0095A1EE /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				3A1789A122CFE3AC0095A1EE /* RootCoordinator.swift */,
+				3A1789A922CFE4EE0095A1EE /* ListViewCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		3A1789A322CFE3DE0095A1EE /* for-Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3A1789A422CFE3F50095A1EE /* Coordinator.swift */,
+			);
+			path = "for-Presentation";
+			sourceTree = "<group>";
+		};
 		3A2FBD4A22CA73F500E4F92F = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +96,14 @@
 				3A2FBD6222CA73F800E4F92F /* Info.plist */,
 			);
 			path = Pokemoncito;
+			sourceTree = "<group>";
+		};
+		3A2FBD6822CA763500E4F92F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3A1789A022CFE39E0095A1EE /* Coordinators */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		3A2FBD7222CA780C00E4F92F /* Protocols */ = {
@@ -174,9 +205,12 @@
 			files = (
 				3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */,
 				3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */,
+				3A1789A222CFE3AC0095A1EE /* RootCoordinator.swift in Sources */,
+				3A1789AA22CFE4EE0095A1EE /* ListViewCoordinator.swift in Sources */,
 				3A1789B222D0D9590095A1EE /* UIView+Extensions.swift in Sources */,
 				3A2FBD6F22CA773700E4F92F /* APIJSONClient.swift in Sources */,
 				3A2FBD7822CA78AC00E4F92F /* NSObject.swift in Sources */,
+				3A1789A522CFE3F50095A1EE /* Coordinator.swift in Sources */,
 				3A2FBD6D22CA770A00E4F92F /* APIEndpoint.swift in Sources */,
 				3A2FBD7522CA782800E4F92F /* APIError.swift in Sources */,
 				3A2FBD5722CA73F500E4F92F /* AppDelegate.swift in Sources */,
