@@ -11,8 +11,18 @@ import UIKit
 class PokemonListViewController: UICollectionViewController {
     
     private let apiDevProvider: PokemonAPIProvider
+    private let imageDataGetter: ImageDataGetter
+    
+    private let reuseIdentifier = "PokemonCell"
+    private let cellSize = CGSize(width: 90, height: 90)
+    private let numberOfSections = 1
+    
+    private var pokemons = [Pokemon]()
+
     init(apiDevProvider: PokemonAPIProvider) {
         self.apiDevProvider = apiDevProvider
+        self.imageDataGetter = ImageDataGetter(qualityOfService: .userInteractive)
+        
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.estimatedItemSize = cellSize
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -41,6 +51,81 @@ class PokemonListViewController: UICollectionViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.register(ImageViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = .black
     }
+}
+
+// MARK - Handling of collection views
+
+extension PokemonListViewController {
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return numberOfSections
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int) -> Int {
+        return pokemons.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
+        if let imageCell = dequeuedCell as? ImageViewCell {
+            imageCell.configureWith(image: .none)
+            
+            let url = urlForPokemonAt(indexPath: indexPath)
+            
+            imageDataGetter.download(fromURL: url) { [weak imageCell] imageData in
+                imageCell?.configureWith(image: UIImage(data: imageData))
+            }
+        }
+        
+        return dequeuedCell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didEndDisplaying cell: UICollectionViewCell,
+                                 forItemAt indexPath: IndexPath) {
+        
+        let url = urlForPokemonAt(indexPath: indexPath)
+        imageDataGetter.cancelDownload(fromURL: url)
+    }
+}
+
+// MARK - View delegate layout
+
+extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+    }
+    
+}
+
+// MARK - Helper functions
+
+extension PokemonListViewController {
+    
+    private func urlForPokemonAt(indexPath: IndexPath) -> String {
+        return pokemons[indexPath.item].sprites["front_default"] ?? ""
+    }
+    
+    private func triggerReload(at indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            if self.collectionView.indexPathsForVisibleItems.contains(indexPath) {
+                self.collectionView.reloadItems(at: [indexPath])
+            }
+        }
+    }
+    
 }
