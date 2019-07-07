@@ -17,6 +17,11 @@ class PokemonListViewController: UICollectionViewController {
     private let cellSize = CGSize(width: 90, height: 90)
     private let numberOfSections = 1
     
+    private let backgroundView = BackgroundListView().with {
+        $0.setupViewsAndConstraints()
+        $0.updateWith(status: .loading("Loading", "Please wait ..."))
+    }
+    
     private var pokemons = [Pokemon]()
 
     init(apiDevProvider: PokemonAPIProvider) {
@@ -36,16 +41,7 @@ class PokemonListViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         
         navigationItem.title = "Pokemons"
-
-        apiDevProvider.fetchPokemons(completion: { pokemons in
-            self.pokemons = pokemons
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }) {
-            print("Error fetching pokemons")
-        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updatePokemonList))
     }
     
     public override func viewDidLoad() {
@@ -53,6 +49,30 @@ class PokemonListViewController: UICollectionViewController {
         
         collectionView.register(ImageViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = .black
+        collectionView.backgroundView = backgroundView
+        
+        updatePokemonList()
+    }
+    
+    @objc private func updatePokemonList() {
+        backgroundView.isHidden = false
+        print("Updating")
+        apiDevProvider.fetchPokemons(completion: { [weak self] pokemons in
+            self?.pokemons = pokemons
+            
+            DispatchQueue.main.async {
+                
+                if self?.pokemons.isEmpty ?? false {
+                    self?.backgroundView.updateWith(status: .empty("Ooops!", "There are no pokemons to display", "Try again by tapping the reload button"))
+                } else {
+                    self?.collectionView.reloadData()
+                    self?.backgroundView.isHidden = true
+                }
+            }
+        }) {
+            // TODO: Handle error case
+            print("Error fetching pokemons")
+        }
     }
 }
 
@@ -87,6 +107,7 @@ extension PokemonListViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView,
