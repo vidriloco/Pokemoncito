@@ -30,6 +30,9 @@
 		3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */; };
 		3A2FBD7D22CA797600E4F92F /* PokemonAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */; };
 		3AF9E64722D2C482008D6BBB /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */; };
+		3AF9E64B22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */; };
+		3AF9E64D22D3EAFC008D6BBB /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64C22D3EAFC008D6BBB /* StatsView.swift */; };
+		3AF9E64F22D3EB6E008D6BBB /* StatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF9E64E22D3EB6E008D6BBB /* StatsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResourceProvider.swift; sourceTree = "<group>"; };
 		3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAPIProvider.swift; sourceTree = "<group>"; };
 		3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewController.swift; sourceTree = "<group>"; };
+		3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBasicsTableViewCell.swift; sourceTree = "<group>"; };
+		3AF9E64C22D3EAFC008D6BBB /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		3AF9E64E22D3EB6E008D6BBB /* StatsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +114,8 @@
 		3A1789AE22D0D8110095A1EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3A1789AF22D0D8270095A1EE /* ImageViewCell.swift */,
-				3A1B0D4622D2966D007C7E77 /* BackgroundListView.swift */,
+				3AF9E64922D369D4008D6BBB /* for-DetailsViewController */,
+				3AF9E64822D369B5008D6BBB /* for-ListViewController */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +220,25 @@
 			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
+		3AF9E64822D369B5008D6BBB /* for-ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3A1789AF22D0D8270095A1EE /* ImageViewCell.swift */,
+				3A1B0D4622D2966D007C7E77 /* BackgroundListView.swift */,
+			);
+			path = "for-ListViewController";
+			sourceTree = "<group>";
+		};
+		3AF9E64922D369D4008D6BBB /* for-DetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */,
+				3AF9E64C22D3EAFC008D6BBB /* StatsView.swift */,
+				3AF9E64E22D3EB6E008D6BBB /* StatsView.xib */,
+			);
+			path = "for-DetailsViewController";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AF9E64F22D3EB6E008D6BBB /* StatsView.xib in Resources */,
 				3A2FBD6122CA73F800E4F92F /* LaunchScreen.storyboard in Resources */,
 				3A2FBD5E22CA73F800E4F92F /* Assets.xcassets in Resources */,
 				3A2FBD5C22CA73F500E4F92F /* Main.storyboard in Resources */,
@@ -285,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AF9E64D22D3EAFC008D6BBB /* StatsView.swift in Sources */,
 				3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */,
 				3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */,
 				3A1789A222CFE3AC0095A1EE /* RootCoordinator.swift in Sources */,
@@ -304,6 +331,7 @@
 				3A2FBD7D22CA797600E4F92F /* PokemonAPIProvider.swift in Sources */,
 				3A2FBD5722CA73F500E4F92F /* AppDelegate.swift in Sources */,
 				3A1789B422D0DE890095A1EE /* ImageDataGetter.swift in Sources */,
+				3AF9E64B22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift in Sources */,
 				3AF9E64722D2C482008D6BBB /* PokemonDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

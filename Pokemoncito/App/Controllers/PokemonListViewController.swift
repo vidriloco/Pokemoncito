@@ -58,7 +58,7 @@ class PokemonListViewController: UICollectionViewController {
     
     @objc private func updatePokemonList() {
         backgroundView.isHidden = false
-        print("Updating")
+        
         apiDevProvider.fetchPokemons(completion: { [weak self] pokemons in
             self?.pokemons = pokemons
             
@@ -100,8 +100,9 @@ extension PokemonListViewController {
             
             let url = urlForPokemonAt(indexPath: indexPath)
             
-            imageDataGetter.download(fromURL: url) { [weak imageCell] imageData in
+            imageDataGetter.download(fromURL: url) { [weak imageCell, weak self] imageData in
                 imageCell?.configureWith(image: UIImage(data: imageData))
+                self?.pokemons[indexPath.item].mainImage = imageData
             }
         }
         
@@ -110,7 +111,6 @@ extension PokemonListViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pokemon = pokemons[indexPath.item]
-        print(pokemon.name)
         pokemonDetailsViewDelegate?.presentDetailsViewForPokemon(pokemon: pokemon)
     }
     

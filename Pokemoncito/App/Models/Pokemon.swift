@@ -17,6 +17,8 @@ struct Pokemon {
     var sprites: [String: String] = [String: String]()
     var missingData: Bool = false
     
+    var mainImage: Data?
+    
     init(withPokemon pokemon: PokemonBasicInfo) {
         id = pokemon.id
         name = pokemon.name
