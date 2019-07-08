@@ -11,3 +11,8 @@ import Foundation
 protocol Coordinator {
     func start()
 }
+
+protocol PokemonDetailsCoordinatorDelegate {
+    func presentDetailsViewForPokemon(pokemon: Pokemon)
+    func dismissDetailsView()
+}

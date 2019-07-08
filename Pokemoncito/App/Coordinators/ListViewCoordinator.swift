@@ -11,16 +11,29 @@ import UIKit
 class ListViewCoordinator: Coordinator {
     private let presenter: UINavigationController
     
-    private var devProvider: PokemonAPIProvider
+    private var apiProvider: PokemonAPIProvider
 
     init(presenter: UINavigationController) {
         self.presenter = presenter
-        self.devProvider = PokemonAPIProvider()
+        self.apiProvider = PokemonAPIProvider()
     }
     
     func start() {
-        let pokemonListViewController = PokemonListViewController(apiDevProvider: devProvider)
+        let pokemonListViewController = PokemonListViewController(apiDevProvider: apiProvider)
         presenter.pushViewController(pokemonListViewController, animated: true)
-
+        pokemonListViewController.pokemonDetailsViewDelegate = self
     }
+}
+
+extension ListViewCoordinator : PokemonDetailsCoordinatorDelegate {
+    func presentDetailsViewForPokemon(pokemon: Pokemon) {
+        let detailsViewController = PokemonDetailsViewController(apiDevProvider: apiProvider, pokemon: pokemon)
+        presenter.pushViewController(detailsViewController, animated: true)
+    }
+    
+    func dismissDetailsView() {
+        presenter.popViewController(animated: true)
+    }
+    
+    
 }

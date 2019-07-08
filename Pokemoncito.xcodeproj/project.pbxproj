@@ -29,6 +29,7 @@
 		3A2FBD7822CA78AC00E4F92F /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7722CA78AC00E4F92F /* NSObject.swift */; };
 		3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */; };
 		3A2FBD7D22CA797600E4F92F /* PokemonAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */; };
+		3AF9E64722D2C482008D6BBB /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		3A2FBD7722CA78AC00E4F92F /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResourceProvider.swift; sourceTree = "<group>"; };
 		3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAPIProvider.swift; sourceTree = "<group>"; };
+		3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				3A1789A722CFE4400095A1EE /* PokemonListViewController.swift */,
+				3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				3A2FBD7D22CA797600E4F92F /* PokemonAPIProvider.swift in Sources */,
 				3A2FBD5722CA73F500E4F92F /* AppDelegate.swift in Sources */,
 				3A1789B422D0DE890095A1EE /* ImageDataGetter.swift in Sources */,
+				3AF9E64722D2C482008D6BBB /* PokemonDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

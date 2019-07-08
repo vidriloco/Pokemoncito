@@ -10,6 +10,8 @@ import UIKit
 
 class PokemonListViewController: UICollectionViewController {
     
+    var pokemonDetailsViewDelegate : PokemonDetailsCoordinatorDelegate?
+    
     private let apiDevProvider: PokemonAPIProvider
     private let imageDataGetter: ImageDataGetter
     
@@ -107,7 +109,9 @@ extension PokemonListViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let pokemon = pokemons[indexPath.item]
+        print(pokemon.name)
+        pokemonDetailsViewDelegate?.presentDetailsViewForPokemon(pokemon: pokemon)
     }
     
     override func collectionView(_ collectionView: UICollectionView,
