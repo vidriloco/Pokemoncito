@@ -13,7 +13,7 @@ class PokemonListViewController: UICollectionViewController {
     var pokemonDetailsViewDelegate : PokemonDetailsCoordinatorDelegate?
     
     private let apiDevProvider: PokemonAPIProvider
-    private let imageDataGetter: ImageDataGetter
+    private var imageDataGetter: ImageDataGetter?
     
     private let reuseIdentifier = "PokemonCell"
     private let cellSize = CGSize(width: 90, height: 90)
@@ -28,7 +28,6 @@ class PokemonListViewController: UICollectionViewController {
 
     init(apiDevProvider: PokemonAPIProvider) {
         self.apiDevProvider = apiDevProvider
-        self.imageDataGetter = ImageDataGetter(qualityOfService: .userInteractive)
         
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.estimatedItemSize = cellSize
@@ -57,7 +56,7 @@ class PokemonListViewController: UICollectionViewController {
     }
     
     @objc private func updatePokemonList() {
-        backgroundView.isHidden = false
+        resetList()
         
         apiDevProvider.fetchPokemons(completion: { [weak self] pokemons in
             self?.pokemons = pokemons
@@ -75,6 +74,15 @@ class PokemonListViewController: UICollectionViewController {
             // TODO: Handle error case
             print("Error fetching pokemons")
         }
+    }
+    
+    private func resetList() {
+        backgroundView.isHidden = false
+        backgroundView.updateWith(status: .loading("Loading", "Please wait ..."))
+
+        imageDataGetter = ImageDataGetter(qualityOfService: .userInteractive)
+        pokemons = []
+        collectionView.reloadData()
     }
 }
 
@@ -100,9 +108,16 @@ extension PokemonListViewController {
             
             let url = urlForPokemonAt(indexPath: indexPath)
             
-            imageDataGetter.download(fromURL: url) { [weak imageCell, weak self] imageData in
-                imageCell?.configureWith(image: UIImage(data: imageData))
-                self?.pokemons[indexPath.item].mainImage = imageData
+            imageDataGetter?.download(fromURL: url) { [weak imageCell, weak self] imageData in
+                guard let self = self, let imageCell = imageCell else { return }
+                
+                DispatchQueue.main.async {
+                    imageCell.configureWith(image: UIImage(data: imageData))
+                    
+                    if self.pokemons.count > indexPath.item {
+                        self.pokemons[indexPath.item].mainImage = imageData
+                    }
+                }
             }
         }
         
@@ -114,13 +129,7 @@ extension PokemonListViewController {
         pokemonDetailsViewDelegate?.presentDetailsViewForPokemon(pokemon: pokemon)
     }
     
-    override func collectionView(_ collectionView: UICollectionView,
-                                 didEndDisplaying cell: UICollectionViewCell,
-                                 forItemAt indexPath: IndexPath) {
-        
-        let url = urlForPokemonAt(indexPath: indexPath)
-        imageDataGetter.cancelDownload(fromURL: url)
-    }
+
 }
 
 // MARK - View delegate layout

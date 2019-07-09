@@ -31,12 +31,17 @@ class PokemonAPIProvider : APIResourceProvider {
             let dispatchGroup = DispatchGroup()
             
             pokemonReferenceList.forEach({ [weak self] pokemonReference in
+                
+                guard let self = self else { return }
+                
                 dispatchGroup.enter()
-                self?.fetchDescriptionForPokemon(named: pokemonReference.name, completion: { (pokemonFromAPI) in
+                self.fetchDescriptionForPokemon(named: pokemonReference.name, completion: { (pokemonFromAPI) in
                     pokemons.append(Pokemon(withPokemon: pokemonFromAPI))
+                    
                     dispatchGroup.leave()
                 }, failure: {
                     pokemons.append(Pokemon(withName: pokemonReference.name))
+                    
                     dispatchGroup.leave()
                 })
             })

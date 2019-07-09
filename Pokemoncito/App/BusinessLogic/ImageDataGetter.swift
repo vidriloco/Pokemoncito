@@ -10,9 +10,20 @@ import Foundation
 
 class ImageDataGetter: ResourceGetter {
     
+    private let queue = DispatchQueue(label: "ImageDataGetter::SynchronizedAccess")
     private let dispatchQueue: DispatchQueue
-    private var tasks = [URLSessionTask]()
     
+    private var _tasks = [URLSessionTask]()
+    private var tasks : [URLSessionTask] {
+        var copyOfTasks = [URLSessionTask]()
+        
+        queue.async {
+            copyOfTasks = self._tasks
+        }
+        
+        return copyOfTasks
+    }
+
     init(qualityOfService: DispatchQoS) {
         self.dispatchQueue = DispatchQueue.init(label: "ImageDataGetter::DispatchQueue", qos: qualityOfService)
     }
@@ -23,7 +34,7 @@ class ImageDataGetter: ResourceGetter {
             guard self.tasks.index(where: { $0.originalRequest?.url?.absoluteString == url }) == nil else {
                 return
             }
-            print(url)
+
             // check for nil url
             guard let urlResource = URL(string: url) else {
                 return
@@ -32,7 +43,9 @@ class ImageDataGetter: ResourceGetter {
             let task = URLSession.shared.dataTask(with: urlResource) { [weak self] (data, response, error) in
                 
                 guard let self = self else { return }
-                
+
+                self.dismissTask(withURL: url)
+
                 if let data = data {
                     completion(data)
                 } else {
@@ -40,17 +53,28 @@ class ImageDataGetter: ResourceGetter {
                 }
             }
             task.resume()
-            self.tasks.append(task)
+            self._tasks.append(task)
         }
     }
     
-    func cancelDownload(fromURL url: String) {
+    private func indexForTask(withURL url: String) -> Int? {
         guard let taskIndex = tasks.index(where: { $0.originalRequest?.url?.absoluteString == url }) else {
+            return nil
+        }
+        
+        return taskIndex
+    }
+    
+    func dismissTask(withURL url: String, markAsCancelled: Bool = false) {
+        guard let taskIndex = indexForTask(withURL: url) else {
             return
         }
         
-        let task = tasks[taskIndex]
-        task.cancel()
-        tasks.remove(at: taskIndex)
+        _tasks.remove(at: taskIndex)
+        
+        if markAsCancelled {
+            let task = tasks[taskIndex]
+            task.cancel()
+        }
     }
 }

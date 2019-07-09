@@ -10,5 +10,5 @@ import Foundation
 
 protocol ResourceGetter {
     func download(fromURL url: String, completion: @escaping (Data) -> Void)
-    func cancelDownload(fromURL url: String)
+    func dismissTask(withURL url: String, markAsCancelled: Bool)
 }
