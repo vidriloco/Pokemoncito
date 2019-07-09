@@ -13,11 +13,14 @@ class PokemonListViewController: UICollectionViewController {
     var pokemonDetailsViewDelegate : PokemonDetailsCoordinatorDelegate?
     
     private let apiDevProvider: PokemonAPIProvider
-    private var imageDataGetter: ImageDataGetter?
+    private var imageDataGetter = ImageDataGetter(qualityOfService: .userInteractive)
     
     private let reuseIdentifier = "PokemonCell"
     private let cellSize = CGSize(width: 90, height: 90)
     private let numberOfSections = 1
+    
+    private var listOffset = 0
+    private let offsetIncrement = 20
     
     private let backgroundView = BackgroundListView().with {
         $0.setupViewsAndConstraints()
@@ -42,7 +45,7 @@ class PokemonListViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         
         navigationItem.title = "Pokemons"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updatePokemonList))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(resetCollectionList))
     }
     
     public override func viewDidLoad() {
@@ -52,15 +55,25 @@ class PokemonListViewController: UICollectionViewController {
         collectionView.backgroundColor = .black
         collectionView.backgroundView = backgroundView
         
-        updatePokemonList()
+        fetchPokemons()
+    }
+}
+
+// MARK - Handling of collection items management
+
+extension PokemonListViewController {
+    
+    @objc private func resetCollectionList() {
+        listOffset = 0
+        fetchPokemons()
     }
     
-    @objc private func updatePokemonList() {
-        resetList()
+    private func fetchPokemons() {
+        updateBackgroundViewMessageForClearedCollection()
         
-        apiDevProvider.fetchPokemons(completion: { [weak self] pokemons in
-            self?.pokemons = pokemons
+        apiDevProvider.fetchPokemons(offset: listOffset, completion: { [weak self] pokemons in
             
+            self?.pokemons.append(contentsOf: pokemons)
             DispatchQueue.main.async {
                 
                 if self?.pokemons.isEmpty ?? false {
@@ -76,14 +89,18 @@ class PokemonListViewController: UICollectionViewController {
         }
     }
     
-    private func resetList() {
+    private func updateBackgroundViewMessageForClearedCollection() {
+        if listOffset != 0 {
+            return
+        }
+        
         backgroundView.isHidden = false
         backgroundView.updateWith(status: .loading("Loading", "Please wait ..."))
-
-        imageDataGetter = ImageDataGetter(qualityOfService: .userInteractive)
+        
         pokemons = []
         collectionView.reloadData()
     }
+    
 }
 
 // MARK - Handling of collection views
@@ -108,13 +125,14 @@ extension PokemonListViewController {
             
             let url = urlForPokemonAt(indexPath: indexPath)
             
-            imageDataGetter?.download(fromURL: url) { [weak imageCell, weak self] imageData in
-                guard let self = self, let imageCell = imageCell else { return }
-                
-                DispatchQueue.main.async {
-                    imageCell.configureWith(image: UIImage(data: imageData))
+            if let imageData = pokemons[indexPath.item].mainImage {
+                imageCell.configureWith(image: UIImage(data: imageData))
+            } else {
+                imageDataGetter.download(fromURL: url) { [weak imageCell, weak self] imageData in
+                    guard let self = self, let imageCell = imageCell else { return }
                     
-                    if self.pokemons.count > indexPath.item {
+                    DispatchQueue.main.async {
+                        imageCell.configureWith(image: UIImage(data: imageData))
                         self.pokemons[indexPath.item].mainImage = imageData
                     }
                 }
@@ -129,8 +147,15 @@ extension PokemonListViewController {
         pokemonDetailsViewDelegate?.presentDetailsViewForPokemon(pokemon: pokemon)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == pokemons.count-1 {
+            listOffset += offsetIncrement
+            fetchPokemons()
+        }
+    }
 
 }
+
 
 // MARK - View delegate layout
 
@@ -152,14 +177,6 @@ extension PokemonListViewController {
     
     private func urlForPokemonAt(indexPath: IndexPath) -> String {
         return pokemons[indexPath.item].sprites["front_default"] ?? ""
-    }
-    
-    private func triggerReload(at indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            if self.collectionView.indexPathsForVisibleItems.contains(indexPath) {
-                self.collectionView.reloadItems(at: [indexPath])
-            }
-        }
     }
     
 }

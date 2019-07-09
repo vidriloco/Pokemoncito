@@ -23,13 +23,13 @@ class PokemonAPIProvider : APIResourceProvider {
     var delegate: APIResourceProviderDelegate?
     
     func fetchPokemons(limit: Int = 20, offset: Int = 0, completion: @escaping ([Pokemon]) -> Void, failure: @escaping () -> Void) {
-        
+        let dispatchGroup = DispatchGroup()
+
         fetchPokemonNamesList(limit: limit, offset: offset, completion: { pokemonReferenceList in
             
             var pokemons = [Pokemon]()
             
-            let dispatchGroup = DispatchGroup()
-            
+        
             pokemonReferenceList.forEach({ [weak self] pokemonReference in
                 
                 guard let self = self else { return }
@@ -46,14 +46,13 @@ class PokemonAPIProvider : APIResourceProvider {
                 })
             })
             
-            DispatchQueue.main.async {
-                dispatchGroup.wait()
+            dispatchGroup.notify(queue: .main, execute: {
                 completion(pokemons)
-            }
+            })
         }) {
-            DispatchQueue.main.async {
+            dispatchGroup.notify(queue: .main, execute: {
                 failure()
-            }
+            })
         }
     }
     
