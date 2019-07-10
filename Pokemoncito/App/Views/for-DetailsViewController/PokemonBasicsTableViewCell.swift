@@ -29,7 +29,7 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         $0.font = UIFont.boldSystemFont(ofSize: 40)
         $0.textColor = .white
         $0.backgroundColor = .clear
-        $0.numberOfLines = 1
+        $0.numberOfLines = 0
     }.withoutAutoConstraints()
     
     override func awakeFromNib() {
