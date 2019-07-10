@@ -16,14 +16,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="hxu-0l-bZG">
-                    <rect key="frame" x="40" y="0.0" width="335" height="80"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hxu-0l-bZG">
+                    <rect key="frame" x="20" y="0.0" width="335" height="80"/>
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="iMC-Eo-TMc">
-                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="80"/>
+                            <rect key="frame" x="0.0" y="21.5" width="43" height="37"/>
                         </activityIndicatorView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching more pokemons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z11-oV-tNK">
-                            <rect key="frame" x="72.5" y="0.0" width="262.5" height="80"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching more pokemons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z11-oV-tNK">
+                            <rect key="frame" x="63" y="28.5" width="272" height="23"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -34,8 +34,8 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="hxu-0l-bZG" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="0y9-9c-Nfe"/>
-                <constraint firstItem="hxu-0l-bZG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="K99-e4-3Hg"/>
+                <constraint firstItem="hxu-0l-bZG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="K99-e4-3Hg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hxu-0l-bZG" secondAttribute="trailing" constant="20" id="UWs-Ja-vlQ"/>
                 <constraint firstItem="hxu-0l-bZG" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="V0j-Ka-Ah6"/>
                 <constraint firstItem="hxu-0l-bZG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dsF-qT-8l6"/>
             </constraints>
