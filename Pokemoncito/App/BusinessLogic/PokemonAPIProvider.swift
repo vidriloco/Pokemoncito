@@ -122,9 +122,18 @@ struct JSON {
             let weight: Int
             let baseExperience: Int
             let sprites: [String: String?]
+            let types: [TypeDescription]
+            
+            struct TypeDescription: Decodable {
+                let type: TypeObject
+                
+                struct TypeObject: Decodable {
+                    let name: String
+                }
+            }
             
             private enum CodingKeys : String, CodingKey {
-                case id, name, height, weight, baseExperience = "base_experience", sprites
+                case id, name, height, weight, baseExperience = "base_experience", sprites, types
             }
         }
     }

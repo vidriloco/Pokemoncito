@@ -16,6 +16,7 @@ struct Pokemon {
     var baseExperience: Int?
     var sprites: [String: String] = [String: String]()
     var missingData: Bool = false
+    var types: [String] = [String]()
     
     var mainImage: Data?
     
@@ -31,6 +32,11 @@ struct Pokemon {
                 sprites[key] = value
             }
         })
+        
+        pokemon.types.forEach { (pokemonType) in
+            types.append(pokemonType.type.name)
+        }
+        
     }
     
     init(withName name: String) {

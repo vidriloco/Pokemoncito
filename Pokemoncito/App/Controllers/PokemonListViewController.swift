@@ -104,7 +104,7 @@ extension PokemonListViewController {
             }
         }) {
             // TODO: Handle error case
-            print("Error fetching pokemons")
+            self.backgroundView.updateWith(status: .error("Oh no :/", "There was a problem fetching the pokemons"))
         }
     }
     

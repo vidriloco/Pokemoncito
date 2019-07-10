@@ -23,6 +23,7 @@ class StatsView : UIView {
         unitsLabel?.text = viewModel.units.uppercased()
         numberLabel?.textColor = .white
         unitsLabel?.textColor = .white
+        unitsLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
     
     override func awakeFromNib() {

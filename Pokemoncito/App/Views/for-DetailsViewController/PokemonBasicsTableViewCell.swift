@@ -14,7 +14,7 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         $0.axis = .vertical
         $0.distribution = .fillProportionally
         $0.alignment = .center
-        $0.spacing = 25
+        $0.spacing = 1
     }.withoutAutoConstraints()
     
     private let basicStatsStackView = UIStackView().with {
@@ -32,6 +32,10 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         $0.numberOfLines = 0
     }.withoutAutoConstraints()
     
+    private var spriteImageView = UIImageView().with {
+        $0.contentMode = .scaleAspectFit
+    }.withoutAutoConstraints()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -39,11 +43,8 @@ class PokemonBasicsTableViewCell : UITableViewCell {
     func configureWith(viewModel: ViewModel) {
         backgroundColor = .clear
         
-        if let imageView = imageView {
-            imageView.image = viewModel.pokemonImage
-            imageView.contentMode = .scaleAspectFill
-            stackView.addArrangedSubview(imageView)
-        }
+        spriteImageView.image = viewModel.pokemonImage
+        stackView.addArrangedSubview(spriteImageView)
         
         let statViewModels = [
             StatsView.ViewModel(number: viewModel.pokemonWeight, units: "Weight"),
@@ -65,13 +66,15 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             contentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 20),
-            contentView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+            spriteImageView.heightAnchor.constraint(equalToConstant: 150)
         ])
         
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
+        basicStatsStackView.setContentHuggingPriority(.required, for: .vertical)
     }
     
     struct ViewModel {

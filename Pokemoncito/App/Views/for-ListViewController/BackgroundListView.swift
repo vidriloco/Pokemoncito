@@ -52,6 +52,7 @@ class BackgroundListView : UIView {
     enum Status {
         case loading(String, String)
         case empty(String, String, String)
+        case error(String, String)
     }
     
     init() {
@@ -108,6 +109,15 @@ class BackgroundListView : UIView {
             titleLabel.text = title
             subtitleLabel.text = subtitle
             instructionsLabel.text = nil
+        case .error(let title, let subtitle):
+            imageView.isHidden = false
+            
+            loadingIndicator.isHidden = true
+            loadingIndicator.stopAnimating()
+            
+            titleLabel.text = title
+            subtitleLabel.text = subtitle
+            
         }
     }
     
