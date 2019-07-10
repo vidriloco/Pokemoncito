@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BusyLoadingView" customModule="Pokemoncito" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="hxu-0l-bZG">
+                    <rect key="frame" x="40" y="0.0" width="335" height="80"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="iMC-Eo-TMc">
+                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="80"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching more pokemons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z11-oV-tNK">
+                            <rect key="frame" x="72.5" y="0.0" width="262.5" height="80"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hxu-0l-bZG" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="0y9-9c-Nfe"/>
+                <constraint firstItem="hxu-0l-bZG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="K99-e4-3Hg"/>
+                <constraint firstItem="hxu-0l-bZG" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="V0j-Ka-Ah6"/>
+                <constraint firstItem="hxu-0l-bZG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dsF-qT-8l6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="activityIndicator" destination="iMC-Eo-TMc" id="bKf-oQ-NeY"/>
+                <outlet property="messageLabel" destination="z11-oV-tNK" id="iWJ-ne-1NU"/>
+            </connections>
+            <point key="canvasLocation" x="138.40000000000001" y="-124.58770614692655"/>
+        </view>
+    </objects>
+</document>

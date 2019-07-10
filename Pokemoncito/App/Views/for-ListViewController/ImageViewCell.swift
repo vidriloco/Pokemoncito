@@ -40,6 +40,7 @@ class ImageViewCell: UICollectionViewCell {
         imageView.backgroundColor = .clear
         imageView.layer.backgroundColor = UIColor.white.cgColor.copy(alpha: 0.1)
         imageView.layer.cornerRadius = 10
+        imageView.contentMode = .scaleAspectFit
         
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale

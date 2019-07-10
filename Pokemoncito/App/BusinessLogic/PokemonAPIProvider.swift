@@ -19,17 +19,23 @@ class PokemonAPIProvider : APIResourceProvider {
     
     private let providerURL = "pokeapi.co"
     private let decoder = JSONDecoder()
+    private var isBusyFetchingPokemons = false
     
     var delegate: APIResourceProviderDelegate?
     
     func fetchPokemons(limit: Int = 20, offset: Int = 0, completion: @escaping ([Pokemon]) -> Void, failure: @escaping () -> Void) {
+        
+        if isBusyFetchingPokemons {
+            return
+        }
+        isBusyFetchingPokemons = true
+        
         let dispatchGroup = DispatchGroup()
 
         fetchPokemonNamesList(limit: limit, offset: offset, completion: { pokemonReferenceList in
             
             var pokemons = [Pokemon]()
             
-        
             pokemonReferenceList.forEach({ [weak self] pokemonReference in
                 
                 guard let self = self else { return }
@@ -48,10 +54,12 @@ class PokemonAPIProvider : APIResourceProvider {
             
             dispatchGroup.notify(queue: .main, execute: {
                 completion(pokemons)
+                self.isBusyFetchingPokemons = false
             })
         }) {
             dispatchGroup.notify(queue: .main, execute: {
                 failure()
+                self.isBusyFetchingPokemons = false
             })
         }
     }

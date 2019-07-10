@@ -28,7 +28,7 @@ class ImageDataGetter: ResourceGetter {
         self.dispatchQueue = DispatchQueue.init(label: "ImageDataGetter::DispatchQueue", qos: qualityOfService)
     }
     
-    func download(fromURL url: String, completion: @escaping (Data) -> Void) {
+    func download(fromURL url: String, completion: @escaping (Data) -> Void) {        
         dispatchQueue.async {
             
             guard self.tasks.index(where: { $0.originalRequest?.url?.absoluteString == url }) == nil else {

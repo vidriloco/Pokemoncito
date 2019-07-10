@@ -16,11 +16,16 @@ class PokemonListViewController: UICollectionViewController {
     private var imageDataGetter = ImageDataGetter(qualityOfService: .userInteractive)
     
     private let reuseIdentifier = "PokemonCell"
+    private let busyFooterReuseIdentifier = "PokemonFooterBusy"
+    private let pagingEndedFooterReuseIdentifier = "PagingEndFooter"
+    
     private let cellSize = CGSize(width: 90, height: 90)
     private let numberOfSections = 1
     
     private var listOffset = 0
     private let offsetIncrement = 20
+    
+    private var paginationEnded = false
     
     private let backgroundView = BackgroundListView().with {
         $0.setupViewsAndConstraints()
@@ -52,6 +57,8 @@ class PokemonListViewController: UICollectionViewController {
         super.viewDidLoad()
         
         collectionView.register(ImageViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(UINib(nibName: "BusyLoadingView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: busyFooterReuseIdentifier)
+        collectionView.register(UINib(nibName: "PagingEndView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: pagingEndedFooterReuseIdentifier)
         collectionView.backgroundColor = .black
         collectionView.backgroundView = backgroundView
         
@@ -65,22 +72,34 @@ extension PokemonListViewController {
     
     @objc private func resetCollectionList() {
         listOffset = 0
+        paginationEnded = false
         fetchPokemons()
     }
     
     private func fetchPokemons() {
+        if paginationEnded {
+            return
+        }
+        
         updateBackgroundViewMessageForClearedCollection()
         
         apiDevProvider.fetchPokemons(offset: listOffset, completion: { [weak self] pokemons in
             
-            self?.pokemons.append(contentsOf: pokemons)
+            guard let self = self else { return }
+            
+            if pokemons.isEmpty {
+                self.paginationEnded = true
+                return
+            }
+            
+            self.pokemons.append(contentsOf: pokemons)
             DispatchQueue.main.async {
                 
-                if self?.pokemons.isEmpty ?? false {
-                    self?.backgroundView.updateWith(status: .empty("Ooops!", "There are no pokemons to display", "Try again by tapping the reload button"))
+                if self.pokemons.isEmpty {
+                    self.backgroundView.updateWith(status: .empty("Ooops!", "There are no pokemons to display", "Try again by tapping the reload button"))
                 } else {
-                    self?.collectionView.reloadData()
-                    self?.backgroundView.isHidden = true
+                    self.collectionView.reloadData()
+                    self.backgroundView.isHidden = true
                 }
             }
         }) {
@@ -123,17 +142,6 @@ extension PokemonListViewController {
         if let imageCell = dequeuedCell as? ImageViewCell {
             imageCell.configureWith(image: .none)
             
-            let url = urlForPokemonAt(indexPath: indexPath)
-            
-            if let imageData = pokemons[indexPath.item].mainImage {
-                imageCell.configureWith(image: UIImage(data: imageData))
-            } else {
-                imageDataGetter.download(fromURL: url) { [weak imageCell, weak self] imageData in
-                    guard let self = self, let imageCell = imageCell else { return }
-                    
-                    DispatchQueue.main.async {
-                        imageCell.configureWith(image: UIImage(data: imageData))
-                        self.pokemons[indexPath.item].mainImage = imageData
             if let url = urlForPokemonAt(indexPath: indexPath) {
                 if let imageData = pokemons[indexPath.item].mainImage {
                     imageCell.configureWith(image: UIImage(data: imageData))
@@ -167,7 +175,30 @@ extension PokemonListViewController {
             fetchPokemons()
         }
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
+        if (kind == UICollectionView.elementKindSectionFooter) {
+            
+            var reusableFooterView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: busyFooterReuseIdentifier, for: indexPath)
+            
+            if paginationEnded {
+                reusableFooterView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: pagingEndedFooterReuseIdentifier, for: indexPath)
+            }
+            
+            reusableFooterView.isHidden = !backgroundView.isHidden
+            return reusableFooterView
+        }
+        fatalError()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: 80)
+    }
 }
 
 
@@ -189,8 +220,8 @@ extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
 
 extension PokemonListViewController {
     
-    private func urlForPokemonAt(indexPath: IndexPath) -> String {
-        return pokemons[indexPath.item].sprites["front_default"] ?? ""
+    private func urlForPokemonAt(indexPath: IndexPath) -> String? {
+        return pokemons[indexPath.item].sprites["front_default"]
     }
     
 }
