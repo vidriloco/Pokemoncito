@@ -109,8 +109,7 @@ class PokemonBasicsTableViewCell : UITableViewCell {
             if let imageData = pokemon.mainImage {
                 return UIImage(data: imageData)
             }
-            
-            return nil
+            return UIImage(named: "Incognito")
         }
         
         init(withPokemon pokemon: Pokemon) {

@@ -134,9 +134,23 @@ extension PokemonListViewController {
                     DispatchQueue.main.async {
                         imageCell.configureWith(image: UIImage(data: imageData))
                         self.pokemons[indexPath.item].mainImage = imageData
+            if let url = urlForPokemonAt(indexPath: indexPath) {
+                if let imageData = pokemons[indexPath.item].mainImage {
+                    imageCell.configureWith(image: UIImage(data: imageData))
+                } else {
+                    imageDataGetter.download(fromURL: url) { [weak imageCell, weak self] imageData in
+                        guard let self = self, let imageCell = imageCell else { return }
+                        
+                        DispatchQueue.main.async {
+                            imageCell.configureWith(image: UIImage(data: imageData))
+                            self.pokemons[indexPath.item].mainImage = imageData
+                        }
                     }
                 }
+            } else {
+                imageCell.configureWith(image: UIImage(named: "Incognito"))
             }
+            
         }
         
         return dequeuedCell
