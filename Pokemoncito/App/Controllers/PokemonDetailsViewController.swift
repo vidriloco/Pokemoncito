@@ -47,6 +47,7 @@ class PokemonDetailsViewController : UITableViewController {
         navigationItem.title = "Pokemon details"
         tableView.backgroundColor = .black
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
     }
 }
 
