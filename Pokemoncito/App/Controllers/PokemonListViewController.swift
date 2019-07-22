@@ -15,9 +15,11 @@ class PokemonListViewController: UICollectionViewController {
     private let apiDevProvider: PokemonAPIProvider
     private var imageDataGetter = ImageDataGetter(qualityOfService: .userInteractive)
     
-    private let reuseIdentifier = "PokemonCell"
-    private let busyFooterReuseIdentifier = "PokemonFooterBusy"
-    private let pagingEndedFooterReuseIdentifier = "PagingEndFooter"
+    struct ReuseIdentifiers {
+        static let forPokemonCell = "PokemonCell"
+        static let forBusyFooterCell = "BusyFooter"
+        static let forNoMoreResultsFooterCell = "NoMoreResultsFooter"
+    }
     
     private let cellSize = CGSize(width: 90, height: 90)
     private let numberOfSections = 1
@@ -56,9 +58,9 @@ class PokemonListViewController: UICollectionViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(ImageViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.register(UINib(nibName: "BusyLoadingView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: busyFooterReuseIdentifier)
-        collectionView.register(UINib(nibName: "PagingEndView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: pagingEndedFooterReuseIdentifier)
+        collectionView.register(ImageViewCell.self, forCellWithReuseIdentifier: ReuseIdentifiers.forPokemonCell)
+        collectionView.register(UINib(nibName: "BusyLoadingView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: ReuseIdentifiers.forBusyFooterCell)
+        collectionView.register(UINib(nibName: "PagingEndView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: ReuseIdentifiers.forNoMoreResultsFooterCell)
         collectionView.backgroundColor = .black
         collectionView.backgroundView = backgroundView
         
@@ -137,7 +139,7 @@ extension PokemonListViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.forPokemonCell, for: indexPath)
         
         if let imageCell = dequeuedCell as? ImageViewCell {
             imageCell.configureWith(image: .none)
@@ -182,12 +184,12 @@ extension PokemonListViewController {
             
             var reusableFooterView = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: busyFooterReuseIdentifier, for: indexPath)
+                withReuseIdentifier: ReuseIdentifiers.forBusyFooterCell, for: indexPath)
             
             if paginationEnded {
                 reusableFooterView = collectionView.dequeueReusableSupplementaryView(
                     ofKind: kind,
-                    withReuseIdentifier: pagingEndedFooterReuseIdentifier, for: indexPath)
+                    withReuseIdentifier: ReuseIdentifiers.forNoMoreResultsFooterCell, for: indexPath)
             }
             
             reusableFooterView.isHidden = !backgroundView.isHidden
