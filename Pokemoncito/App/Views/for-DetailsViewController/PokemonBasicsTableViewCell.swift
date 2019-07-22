@@ -14,7 +14,7 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         $0.axis = .vertical
         $0.distribution = .fillProportionally
         $0.alignment = .center
-        $0.spacing = 1
+        $0.spacing = 5
     }.withoutAutoConstraints()
     
     private let basicStatsStackView = UIStackView().with {
@@ -31,6 +31,14 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         $0.backgroundColor = .clear
         $0.numberOfLines = 0
     }.withoutAutoConstraints()
+    
+    private var numberLabel = UILabel().with {
+        $0.textAlignment = .center
+        $0.font = UIFont.boldSystemFont(ofSize: 20)
+        $0.textColor = .white
+        $0.backgroundColor = .clear
+        $0.numberOfLines = 0
+        }.withoutAutoConstraints()
     
     private var spriteImageView = UIImageView().with {
         $0.contentMode = .scaleAspectFit
@@ -57,9 +65,19 @@ class PokemonBasicsTableViewCell : UITableViewCell {
                 basicStatsStackView.addArrangedSubview(statsView)
             }
         }
-        
+
         titleLabel.text = viewModel.pokemonName
         stackView.addArrangedSubview(titleLabel)
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
+        
+        if let pokemonIndex = viewModel.pokemonIndex {
+            numberLabel.text = pokemonIndex
+            stackView.addArrangedSubview(numberLabel)
+            numberLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+            numberLabel.setContentHuggingPriority(.required, for: .vertical)
+        }
+        
         stackView.addArrangedSubview(basicStatsStackView)
         
         contentView.addSubview(stackView)
@@ -71,9 +89,7 @@ class PokemonBasicsTableViewCell : UITableViewCell {
             contentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 20),
             spriteImageView.heightAnchor.constraint(equalToConstant: 150)
         ])
-        
-        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-        titleLabel.setContentHuggingPriority(.required, for: .vertical)
+
         basicStatsStackView.setContentHuggingPriority(.required, for: .vertical)
     }
     
@@ -82,6 +98,13 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         
         var pokemonName: String {
             return pokemon.name.capitalized
+        }
+        
+        var pokemonIndex: String? {
+            if let idx = pokemon.id {
+                return "#\(idx)"
+            }
+            return nil
         }
         
         var pokemonHeight: String {
