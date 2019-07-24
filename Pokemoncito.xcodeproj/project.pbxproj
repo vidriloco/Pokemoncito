@@ -34,6 +34,10 @@
 		3A2FBD7822CA78AC00E4F92F /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7722CA78AC00E4F92F /* NSObject.swift */; };
 		3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */; };
 		3A2FBD7D22CA797600E4F92F /* PokemonAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */; };
+		3A8DFCFD22E86CFC001E6DEA /* BarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFCFC22E86CFC001E6DEA /* BarIndicatorView.swift */; };
+		3A8DFCFF22E8729C001E6DEA /* PokemonPowersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFCFE22E8729C001E6DEA /* PokemonPowersViewCell.swift */; };
+		3A8DFD0122E87C82001E6DEA /* TestSinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFD0022E87C82001E6DEA /* TestSinkViewController.swift */; };
+		3A8DFD0322E87DF0001E6DEA /* PanelBarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFD0222E87DF0001E6DEA /* PanelBarIndicatorView.swift */; };
 		3A9C7E4822D64F1D0064CA4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9C7E4722D64F1D0064CA4F /* LaunchScreen.storyboard */; };
 		3AF9E64722D2C482008D6BBB /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */; };
 		3AF9E64B22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */; };
@@ -72,6 +76,10 @@
 		3A2FBD7722CA78AC00E4F92F /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		3A2FBD7922CA78FA00E4F92F /* APIResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResourceProvider.swift; sourceTree = "<group>"; };
 		3A2FBD7C22CA797600E4F92F /* PokemonAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonAPIProvider.swift; sourceTree = "<group>"; };
+		3A8DFCFC22E86CFC001E6DEA /* BarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarIndicatorView.swift; sourceTree = "<group>"; };
+		3A8DFCFE22E8729C001E6DEA /* PokemonPowersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonPowersViewCell.swift; sourceTree = "<group>"; };
+		3A8DFD0022E87C82001E6DEA /* TestSinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSinkViewController.swift; sourceTree = "<group>"; };
+		3A8DFD0222E87DF0001E6DEA /* PanelBarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelBarIndicatorView.swift; sourceTree = "<group>"; };
 		3A9C7E4722D64F1D0064CA4F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewController.swift; sourceTree = "<group>"; };
 		3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBasicsTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +121,7 @@
 			children = (
 				3A1789A722CFE4400095A1EE /* PokemonListViewController.swift */,
 				3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */,
+				3A8DFD0022E87C82001E6DEA /* TestSinkViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +259,8 @@
 				3A04DC0222D630510087F95A /* IconStatsView.swift */,
 				3AF9E64C22D3EAFC008D6BBB /* TextStatsView.swift */,
 				3AF9E64E22D3EB6E008D6BBB /* TextStatsView.xib */,
+				3A8DFCFC22E86CFC001E6DEA /* BarIndicatorView.swift */,
+				3A8DFD0222E87DF0001E6DEA /* PanelBarIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -272,6 +283,7 @@
 			children = (
 				3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */,
 				3A04DC0422D638CF0087F95A /* PokemonTypeTableViewCell.swift */,
+				3A8DFCFE22E8729C001E6DEA /* PokemonPowersViewCell.swift */,
 			);
 			path = "for-DetailsViewController";
 			sourceTree = "<group>";
@@ -352,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF9E64D22D3EAFC008D6BBB /* TextStatsView.swift in Sources */,
+				3A8DFD0122E87C82001E6DEA /* TestSinkViewController.swift in Sources */,
 				3A04DC0322D630510087F95A /* IconStatsView.swift in Sources */,
 				3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */,
 				3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */,
@@ -365,10 +378,13 @@
 				3A1789A822CFE4400095A1EE /* PokemonListViewController.swift in Sources */,
 				3A2FBD6F22CA773700E4F92F /* APIJSONClient.swift in Sources */,
 				3A1789AD22CFFD100095A1EE /* Pokemon.swift in Sources */,
+				3A8DFCFF22E8729C001E6DEA /* PokemonPowersViewCell.swift in Sources */,
 				3A2FBD7822CA78AC00E4F92F /* NSObject.swift in Sources */,
 				3A1B0D4722D2966D007C7E77 /* BackgroundListView.swift in Sources */,
 				3A1789A522CFE3F50095A1EE /* Coordinator.swift in Sources */,
+				3A8DFD0322E87DF0001E6DEA /* PanelBarIndicatorView.swift in Sources */,
 				3A1789B622D0DEE90095A1EE /* ResourceGetter.swift in Sources */,
+				3A8DFCFD22E86CFC001E6DEA /* BarIndicatorView.swift in Sources */,
 				3A2FBD6D22CA770A00E4F92F /* APIEndpoint.swift in Sources */,
 				3A2FBD7522CA782800E4F92F /* APIError.swift in Sources */,
 				3A04DC0522D638CF0087F95A /* PokemonTypeTableViewCell.swift in Sources */,

@@ -27,4 +27,9 @@ class RootCoordinator: Coordinator {
         listViewCoordinator.start()
         window.makeKeyAndVisible()
     }
+    
+    func startTestSink() {
+        window.rootViewController = TestSinkViewController()
+        window.makeKeyAndVisible()
+    }
 }

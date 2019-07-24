@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Pokemon {
+class Pokemon {
     var id: Int?
     var name: String
     var height: Int?
@@ -19,6 +19,7 @@ struct Pokemon {
     var types: [String] = [String]()
     
     var mainImage: Data?
+    var powers: [String: Float] = [String: Float]()
     
     init(withPokemon pokemon: PokemonBasicInfo) {
         id = pokemon.id
@@ -42,5 +43,9 @@ struct Pokemon {
     init(withName name: String) {
         self.name = name
         missingData = true
+    }
+    
+    func add(powersList powers: [String: Float]) {
+        self.powers = powers
     }
 }
