@@ -55,12 +55,12 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         stackView.addArrangedSubview(spriteImageView)
         
         let statViewModels = [
-            StatsView.ViewModel(number: viewModel.pokemonWeight, units: "Weight"),
-            StatsView.ViewModel(number: viewModel.pokemonHeight, units: "Height"),
-            StatsView.ViewModel(number: viewModel.pokemonXP, units: "XP")]
+            TextStatsView.ViewModel(titleValue: viewModel.pokemonWeight, subtitleValue: "Weight"),
+            TextStatsView.ViewModel(titleValue: viewModel.pokemonHeight, subtitleValue: "Height"),
+            TextStatsView.ViewModel(titleValue: viewModel.pokemonXP, subtitleValue: "XP")]
         
         statViewModels.forEach { statViewModel in
-            if let statsView = Bundle.main.loadNibNamed("StatsView", owner: self, options: nil)?.first as? StatsView {
+            if let statsView = Bundle.main.loadNibNamed("TextStatsView", owner: self, options: nil)?.first as? TextStatsView {
                 statsView.configureWith(viewModel: statViewModel)
                 basicStatsStackView.addArrangedSubview(statsView)
             }
