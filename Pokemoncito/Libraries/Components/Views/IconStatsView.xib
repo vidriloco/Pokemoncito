@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PowerTypeView" customModule="Pokemoncito" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="IconStatsView" customModule="Pokemoncito" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -41,8 +41,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="imageView" destination="Qeg-H4-XYu" id="J23-vw-UzC"/>
-                <outlet property="typeNameLabel" destination="yE9-yY-Kot" id="ZYa-ac-0Sl"/>
+                <outlet property="imageView" destination="Qeg-H4-XYu" id="5lQ-KS-SEO"/>
+                <outlet property="titleLabel" destination="yE9-yY-Kot" id="5il-0x-hkY"/>
             </connections>
             <point key="canvasLocation" x="-73.599999999999994" y="405.69715142428788"/>
         </view>

@@ -40,8 +40,8 @@ class PokemonTypeTableViewCell : UITableViewCell {
         backgroundColor = .clear
         
         viewModel.pokemonTypeList.forEach { pokemonTypeName in
-            if let powerTypeView = Bundle.main.loadNibNamed("PowerTypeView", owner: self, options: nil)?.first as? PowerTypeView {
-                powerTypeView.configureWith(viewModel: PowerTypeView.ViewModel(typeName: pokemonTypeName))
+            if let powerTypeView = Bundle.main.loadNibNamed("IconStatsView", owner: self, options: nil)?.first as? IconStatsView {
+                powerTypeView.configureWith(viewModel: IconStatsView.ViewModel(title: pokemonTypeName))
                 typesStatsStackView.addArrangedSubview(powerTypeView)
             }
         }

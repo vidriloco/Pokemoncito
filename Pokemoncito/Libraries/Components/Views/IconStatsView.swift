@@ -1,5 +1,5 @@
 //
-//  PowerTypeView.swift
+//  IconStatsView.swift
 //  Pokemoncito
 //
 //  Created by Alejandro on 7/10/19.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-class PowerTypeView: UIView {
+class IconStatsView: UIView {
     
-    @IBOutlet weak var typeNameLabel: UILabel?
+    @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var imageView: UIImageView?
     
     struct ViewModel {
-        let typeName : String
+        let title : String
         
         var image: UIImage? {
-            return UIImage(named: "\(typeName.capitalized)Icon")
+            return UIImage(named: "\(title.capitalized)Icon")
         }
     }
     
     func configureWith(viewModel: ViewModel) {
-        typeNameLabel?.text = viewModel.typeName
-        typeNameLabel?.text = viewModel.typeName.uppercased()
-        typeNameLabel?.textColor = .white
-        typeNameLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        titleLabel?.text = viewModel.title
+        titleLabel?.text = viewModel.title.uppercased()
+        titleLabel?.textColor = .white
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         imageView?.image = viewModel.image
     }
     

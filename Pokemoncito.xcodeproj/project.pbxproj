@@ -10,8 +10,8 @@
 		3A04DBFB22D544B50087F95A /* BusyLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A04DBFA22D544B50087F95A /* BusyLoadingView.xib */; };
 		3A04DBFD22D5CEC60087F95A /* PagingEndView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A04DBFC22D5CEC60087F95A /* PagingEndView.xib */; };
 		3A04DBFF22D5D1A60087F95A /* PagingEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A04DBFE22D5D1A60087F95A /* PagingEndView.swift */; };
-		3A04DC0122D62F150087F95A /* PowerTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A04DC0022D62F150087F95A /* PowerTypeView.xib */; };
-		3A04DC0322D630510087F95A /* PowerTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A04DC0222D630510087F95A /* PowerTypeView.swift */; };
+		3A04DC0122D62F150087F95A /* IconStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A04DC0022D62F150087F95A /* IconStatsView.xib */; };
+		3A04DC0322D630510087F95A /* IconStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A04DC0222D630510087F95A /* IconStatsView.swift */; };
 		3A04DC0522D638CF0087F95A /* PokemonTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A04DC0422D638CF0087F95A /* PokemonTypeTableViewCell.swift */; };
 		3A1789A222CFE3AC0095A1EE /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A122CFE3AC0095A1EE /* RootCoordinator.swift */; };
 		3A1789A522CFE3F50095A1EE /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1789A422CFE3F50095A1EE /* Coordinator.swift */; };
@@ -46,8 +46,8 @@
 		3A04DBFA22D544B50087F95A /* BusyLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusyLoadingView.xib; sourceTree = "<group>"; };
 		3A04DBFC22D5CEC60087F95A /* PagingEndView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PagingEndView.xib; sourceTree = "<group>"; };
 		3A04DBFE22D5D1A60087F95A /* PagingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingEndView.swift; sourceTree = "<group>"; };
-		3A04DC0022D62F150087F95A /* PowerTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PowerTypeView.xib; sourceTree = "<group>"; };
-		3A04DC0222D630510087F95A /* PowerTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerTypeView.swift; sourceTree = "<group>"; };
+		3A04DC0022D62F150087F95A /* IconStatsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconStatsView.xib; sourceTree = "<group>"; };
+		3A04DC0222D630510087F95A /* IconStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconStatsView.swift; sourceTree = "<group>"; };
 		3A04DC0422D638CF0087F95A /* PokemonTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeTableViewCell.swift; sourceTree = "<group>"; };
 		3A1789A122CFE3AC0095A1EE /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		3A1789A422CFE3F50095A1EE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -246,6 +246,8 @@
 		3A8DFCFB22E85B83001E6DEA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A04DC0022D62F150087F95A /* IconStatsView.xib */,
+				3A04DC0222D630510087F95A /* IconStatsView.swift */,
 				3AF9E64C22D3EAFC008D6BBB /* TextStatsView.swift */,
 				3AF9E64E22D3EB6E008D6BBB /* TextStatsView.xib */,
 			);
@@ -269,8 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */,
-				3A04DC0022D62F150087F95A /* PowerTypeView.xib */,
-				3A04DC0222D630510087F95A /* PowerTypeView.swift */,
 				3A04DC0422D638CF0087F95A /* PokemonTypeTableViewCell.swift */,
 			);
 			path = "for-DetailsViewController";
@@ -335,7 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF9E64F22D3EB6E008D6BBB /* TextStatsView.xib in Resources */,
-				3A04DC0122D62F150087F95A /* PowerTypeView.xib in Resources */,
+				3A04DC0122D62F150087F95A /* IconStatsView.xib in Resources */,
 				3A04DBFB22D544B50087F95A /* BusyLoadingView.xib in Resources */,
 				3A2FBD5E22CA73F800E4F92F /* Assets.xcassets in Resources */,
 				3A9C7E4822D64F1D0064CA4F /* LaunchScreen.storyboard in Resources */,
@@ -352,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF9E64D22D3EAFC008D6BBB /* TextStatsView.swift in Sources */,
-				3A04DC0322D630510087F95A /* PowerTypeView.swift in Sources */,
+				3A04DC0322D630510087F95A /* IconStatsView.swift in Sources */,
 				3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */,
 				3A2FBD7A22CA78FA00E4F92F /* APIResourceProvider.swift in Sources */,
 				3A1789A222CFE3AC0095A1EE /* RootCoordinator.swift in Sources */,
