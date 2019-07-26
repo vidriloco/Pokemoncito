@@ -25,6 +25,8 @@ class PanelBarIndicatorView : UIView {
     }.withoutAutoConstraints()
     
     func configureWith(barsViewModels: [BarRepresentable], viewModel: ViewModel) {
+        stackView.removeAllArrangedSubviews()
+        
         addSubview(stackView)
         
         NSLayoutConstraint.activate([

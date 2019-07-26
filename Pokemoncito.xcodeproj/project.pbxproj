@@ -39,6 +39,7 @@
 		3A8DFD0122E87C82001E6DEA /* TestSinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFD0022E87C82001E6DEA /* TestSinkViewController.swift */; };
 		3A8DFD0322E87DF0001E6DEA /* PanelBarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFD0222E87DF0001E6DEA /* PanelBarIndicatorView.swift */; };
 		3A8DFD0522EB3D1A001E6DEA /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFD0422EB3D1A001E6DEA /* UIColor+Extensions.swift */; };
+		3A8DFD0722EB6273001E6DEA /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DFD0622EB6273001E6DEA /* UIStackView+Extensions.swift */; };
 		3A9C7E4822D64F1D0064CA4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9C7E4722D64F1D0064CA4F /* LaunchScreen.storyboard */; };
 		3AF9E64722D2C482008D6BBB /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */; };
 		3AF9E64B22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */; };
@@ -82,6 +83,7 @@
 		3A8DFD0022E87C82001E6DEA /* TestSinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSinkViewController.swift; sourceTree = "<group>"; };
 		3A8DFD0222E87DF0001E6DEA /* PanelBarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelBarIndicatorView.swift; sourceTree = "<group>"; };
 		3A8DFD0422EB3D1A001E6DEA /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		3A8DFD0622EB6273001E6DEA /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		3A9C7E4722D64F1D0064CA4F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AF9E64622D2C482008D6BBB /* PokemonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsViewController.swift; sourceTree = "<group>"; };
 		3AF9E64A22D36A81008D6BBB /* PokemonBasicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBasicsTableViewCell.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				3A2FBD7722CA78AC00E4F92F /* NSObject.swift */,
 				3A1789B122D0D9590095A1EE /* UIView+Extensions.swift */,
 				3A8DFD0422EB3D1A001E6DEA /* UIColor+Extensions.swift */,
+				3A8DFD0622EB6273001E6DEA /* UIStackView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF9E64D22D3EAFC008D6BBB /* TextStatsView.swift in Sources */,
+				3A8DFD0722EB6273001E6DEA /* UIStackView+Extensions.swift in Sources */,
 				3A8DFD0122E87C82001E6DEA /* TestSinkViewController.swift in Sources */,
 				3A04DC0322D630510087F95A /* IconStatsView.swift in Sources */,
 				3A2FBD5922CA73F500E4F92F /* ViewController.swift in Sources */,

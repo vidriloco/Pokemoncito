@@ -27,7 +27,7 @@ class PokemonDetailsViewController : UITableViewController {
     struct BlockDetailsViewCell {
         static let basicHeight : Float = 350
         static let typesHeight : Float = 150
-        static let powersHeight : Float = 600
+        static let powersHeight : Float = 620
     }
     
     init(apiDevProvider: PokemonAPIProvider, pokemon: Pokemon) {
@@ -66,17 +66,17 @@ extension PokemonDetailsViewController {
         
         switch pokemonDetailsBlock {
         case .basic(let pokemon, _):
-            if let basicsCell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.forPokemonBasicDetailsCell) as? PokemonBasicsTableViewCell {
+            if let basicsCell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.forPokemonBasicDetailsCell, for: indexPath) as? PokemonBasicsTableViewCell {
                 basicsCell.configureWith(viewModel: PokemonBasicsTableViewCell.ViewModel(withPokemon: pokemon))
                 cell = basicsCell
             }
         case .types(let pokemon, _):
-            if let typesCell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.forPokemonTypeCell) as? PokemonTypeTableViewCell {
+            if let typesCell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.forPokemonTypeCell, for: indexPath) as? PokemonTypeTableViewCell {
                 typesCell.configureWith(viewModel: PokemonTypeTableViewCell.ViewModel(withPokemon: pokemon))
                 cell = typesCell
             }
         case .powers(let pokemon, _):
-            if let powersCell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.forPokemonPowersCell) as? PokemonPowersViewCell {
+            if let powersCell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.forPokemonPowersCell, for: indexPath) as? PokemonPowersViewCell {
                 
                 let stats = pokemon.stats.map { PokemonStatViewModel(with: $0) }
         

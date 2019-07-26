@@ -49,15 +49,26 @@ class PokemonBasicsTableViewCell : UITableViewCell {
     }
     
     func configureWith(viewModel: ViewModel) {
+        basicStatsStackView.removeAllArrangedSubviews()
+        stackView.removeAllArrangedSubviews()
+        
+        if !contentView.subviews.contains(stackView) {
+            contentView.addSubview(stackView)
+        }
+        
         backgroundColor = .clear
         
         spriteImageView.image = viewModel.pokemonImage
-        stackView.addArrangedSubview(spriteImageView)
         
         let statViewModels = [
             TextStatsView.ViewModel(titleValue: viewModel.pokemonWeight, subtitleValue: "Weight"),
             TextStatsView.ViewModel(titleValue: viewModel.pokemonHeight, subtitleValue: "Height"),
             TextStatsView.ViewModel(titleValue: viewModel.pokemonXP, subtitleValue: "XP")]
+
+        stackView.addArrangedSubview(spriteImageView)
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(numberLabel)
+        stackView.addArrangedSubview(basicStatsStackView)
         
         statViewModels.forEach { statViewModel in
             if let statsView = Bundle.main.loadNibNamed("TextStatsView", owner: self, options: nil)?.first as? TextStatsView {
@@ -67,20 +78,20 @@ class PokemonBasicsTableViewCell : UITableViewCell {
         }
 
         titleLabel.text = viewModel.pokemonName
-        stackView.addArrangedSubview(titleLabel)
-        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-        titleLabel.setContentHuggingPriority(.required, for: .vertical)
         
         if let pokemonIndex = viewModel.pokemonIndex {
             numberLabel.text = pokemonIndex
-            stackView.addArrangedSubview(numberLabel)
-            numberLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-            numberLabel.setContentHuggingPriority(.required, for: .vertical)
         }
         
-        stackView.addArrangedSubview(basicStatsStackView)
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
         
-        contentView.addSubview(stackView)
+        numberLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        numberLabel.setContentHuggingPriority(.required, for: .vertical)
         
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -89,7 +100,7 @@ class PokemonBasicsTableViewCell : UITableViewCell {
             contentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 20),
             spriteImageView.heightAnchor.constraint(equalToConstant: 150)
         ])
-
+        
         basicStatsStackView.setContentHuggingPriority(.required, for: .vertical)
     }
     

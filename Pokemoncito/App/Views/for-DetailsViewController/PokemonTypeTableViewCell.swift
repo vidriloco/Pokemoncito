@@ -37,6 +37,13 @@ class PokemonTypeTableViewCell : UITableViewCell {
     }
     
     func configureWith(viewModel: ViewModel) {
+        typesStatsStackView.removeAllArrangedSubviews()
+        stackView.removeAllArrangedSubviews()
+
+        if !contentView.subviews.contains(stackView) {
+            contentView.addSubview(stackView)
+        }
+        
         backgroundColor = .clear
         
         viewModel.pokemonTypeList.forEach { pokemonTypeName in
@@ -50,14 +57,16 @@ class PokemonTypeTableViewCell : UITableViewCell {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(typesStatsStackView)
         
-        contentView.addSubview(stackView)
-        
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             contentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 20)
-            ])
+        ])
         
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.setContentHuggingPriority(.required, for: .vertical)

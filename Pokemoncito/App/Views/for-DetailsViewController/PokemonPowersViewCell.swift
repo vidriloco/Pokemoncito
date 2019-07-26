@@ -28,8 +28,13 @@ class PokemonPowersViewCell : UITableViewCell {
     func configureWith(barsViewModels: [BarRepresentable]) {
         backgroundColor = .clear
 
-        contentView.addSubview(indicatorView)
-        
+        if !contentView.subviews.contains(indicatorView) {
+            contentView.addSubview(indicatorView)
+            setupConstraints(forModels: barsViewModels)
+        }
+    }
+    
+    private func setupConstraints(forModels barsViewModels: [BarRepresentable]) {
         NSLayoutConstraint.activate([
             indicatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             contentView.trailingAnchor.constraint(equalTo: indicatorView.trailingAnchor, constant: 20),
