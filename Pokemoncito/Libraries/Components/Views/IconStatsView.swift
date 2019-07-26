@@ -23,7 +23,6 @@ class IconStatsView: UIView {
     
     func configureWith(viewModel: ViewModel) {
         titleLabel?.text = viewModel.title
-        titleLabel?.text = viewModel.title.uppercased()
         titleLabel?.textColor = .white
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         imageView?.image = viewModel.image

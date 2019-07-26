@@ -25,7 +25,7 @@ class PokemonPowersViewCell : UITableViewCell {
         
     }
     
-    func configureWith(barsViewModels: [BarRepresentable]) {
+    func configureWith(barsViewModels: [PokemonStatViewModel]) {
         backgroundColor = .clear
 
         if !contentView.subviews.contains(indicatorView) {
@@ -34,7 +34,7 @@ class PokemonPowersViewCell : UITableViewCell {
         }
     }
     
-    private func setupConstraints(forModels barsViewModels: [BarRepresentable]) {
+    private func setupConstraints(forModels barsViewModels: [PokemonStatViewModel]) {
         NSLayoutConstraint.activate([
             indicatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             contentView.trailingAnchor.constraint(equalTo: indicatorView.trailingAnchor, constant: 20),
@@ -42,6 +42,32 @@ class PokemonPowersViewCell : UITableViewCell {
             contentView.bottomAnchor.constraint(equalTo: indicatorView.bottomAnchor)
         ])
         
-        indicatorView.configureWith(barsViewModels: barsViewModels, viewModel: PanelBarIndicatorView.ViewModel(title: "Pokemon's EVs".uppercased(), titleSpacing: 20, maximumBarMetric: 252))
+        indicatorView.configureWith(barsViewModels: barsViewModels, viewModel: PanelBarIndicatorView.ViewModel(title: "Pokemon's EVs:".uppercased(), titleSpacing: 20, maximumBarMetric: 252))
     }
+}
+
+struct PokemonStatViewModel: BarRepresentable {
+    
+    let name: String
+    let numericValue: Int
+    let colorValue: UIColor
+    
+    init(with pokemonStat: Pokemon.Stat) {
+        name = pokemonStat.name
+        numericValue = pokemonStat.value
+        colorValue = UIColor.random()
+    }
+    
+    func title() -> String {
+        return self.name
+    }
+    
+    func color() -> UIColor {
+        return self.colorValue
+    }
+    
+    func value() -> Float {
+        return Float(self.numericValue)
+    }
+    
 }

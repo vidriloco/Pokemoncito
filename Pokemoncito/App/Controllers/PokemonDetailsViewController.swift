@@ -107,30 +107,3 @@ extension PokemonDetailsViewController {
         return detailsBlockList.count
     }
 }
-
-struct PokemonStatViewModel: BarRepresentable {
-    
-    let name: String
-    let numericValue: Int
-    let colorValue: UIColor
-    
-    init(with pokemonStat: Pokemon.Stat) {
-        name = pokemonStat.name
-        numericValue = pokemonStat.value
-        colorValue = UIColor.random()
-    }
-    
-    func title() -> String {
-        return self.name
-    }
-    
-    func color() -> UIColor {
-        return self.colorValue
-    }
-    
-    func value() -> Float {
-        return Float(self.numericValue)
-    }
-    
-    
-}
