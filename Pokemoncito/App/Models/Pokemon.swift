@@ -20,6 +20,7 @@ class Pokemon {
     
     var mainImage: Data?
     var powers: [String: Float] = [String: Float]()
+    var stats: [Stat] = [Stat]()
     
     init(withPokemon pokemon: PokemonBasicInfo) {
         id = pokemon.id
@@ -38,6 +39,9 @@ class Pokemon {
             types.append(pokemonType.type.name)
         }
         
+        pokemon.stats.forEach { (pokemonStat) in
+            stats.append(Stat(with: pokemonStat))
+        }
     }
     
     init(withName name: String) {
@@ -47,5 +51,15 @@ class Pokemon {
     
     func add(powersList powers: [String: Float]) {
         self.powers = powers
+    }
+    
+    struct Stat {
+        let name: String
+        let value: Int
+        
+        init(with pokemonStat: PokemonStat) {
+            name = pokemonStat.stat.name
+            value = pokemonStat.baseStat
+        }
     }
 }

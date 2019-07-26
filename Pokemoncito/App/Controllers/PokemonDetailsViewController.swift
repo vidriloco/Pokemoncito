@@ -36,7 +36,6 @@ class PokemonDetailsViewController : UITableViewController {
         detailsBlockList.append(.basic(pokemon, BlockDetailsViewCell.basicHeight))
         detailsBlockList.append(.types(pokemon, BlockDetailsViewCell.typesHeight))
         
-        pokemon.add(powersList: ["Attack": 10, "Forgiveness": 60, "Speed": 40])
         detailsBlockList.append(.powers(pokemon, BlockDetailsViewCell.powersHeight))
         
         tableView.register(PokemonBasicsTableViewCell.self, forCellReuseIdentifier: ReuseIdentifiers.forPokemonBasicDetailsCell)
@@ -78,7 +77,10 @@ extension PokemonDetailsViewController {
             }
         case .powers(let pokemon, _):
             if let powersCell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.forPokemonPowersCell) as? PokemonPowersViewCell {
-                //powersCell.configureWith(viewModel: PokemonPowersViewCell.ViewModel(withPokemon: pokemon))
+                
+                let stats = pokemon.stats.map { PokemonStatViewModel(with: $0) }
+        
+                powersCell.configureWith(barsViewModels: stats)
                 cell = powersCell
             }
         }
@@ -104,4 +106,31 @@ extension PokemonDetailsViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return detailsBlockList.count
     }
+}
+
+struct PokemonStatViewModel: BarRepresentable {
+    
+    let name: String
+    let numericValue: Int
+    let colorValue: UIColor
+    
+    init(with pokemonStat: Pokemon.Stat) {
+        name = pokemonStat.name
+        numericValue = pokemonStat.value
+        colorValue = UIColor.random()
+    }
+    
+    func title() -> String {
+        return self.name
+    }
+    
+    func color() -> UIColor {
+        return self.colorValue
+    }
+    
+    func value() -> Float {
+        return Float(self.numericValue)
+    }
+    
+    
 }

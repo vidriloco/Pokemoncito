@@ -10,6 +10,8 @@ import UIKit
 
 class PokemonPowersViewCell : UITableViewCell {
     
+    let indicatorView = PanelBarIndicatorView().withoutAutoConstraints()
+    
     struct ViewModel {
         private let pokemon: Pokemon
         
@@ -23,4 +25,18 @@ class PokemonPowersViewCell : UITableViewCell {
         
     }
     
+    func configureWith(barsViewModels: [BarRepresentable]) {
+        backgroundColor = .clear
+
+        contentView.addSubview(indicatorView)
+        
+        NSLayoutConstraint.activate([
+            indicatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            contentView.trailingAnchor.constraint(equalTo: indicatorView.trailingAnchor, constant: 20),
+            indicatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            contentView.bottomAnchor.constraint(equalTo: indicatorView.bottomAnchor)
+        ])
+        
+        indicatorView.configureWith(barsViewModels: barsViewModels, viewModel: PanelBarIndicatorView.ViewModel(title: "Pokemon's EVs".uppercased(), titleSpacing: 20, maximumBarMetric: 252))
+    }
 }

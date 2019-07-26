@@ -101,6 +101,7 @@ class PokemonAPIProvider : APIResourceProvider {
 typealias PokemonNames = JSON.Pokemons.Names
 typealias PokemonNamesResult = JSON.Pokemons.Names.Result
 typealias PokemonBasicInfo = JSON.Pokemons.BasicInfo
+typealias PokemonStat = PokemonBasicInfo.Stat
 
 // MARK - API Response structures
 struct JSON {
@@ -123,6 +124,7 @@ struct JSON {
             let baseExperience: Int
             let sprites: [String: String?]
             let types: [TypeDescription]
+            let stats: [Stat]
             
             struct TypeDescription: Decodable {
                 let type: TypeObject
@@ -132,8 +134,21 @@ struct JSON {
                 }
             }
             
+            struct Stat: Decodable {
+                let baseStat: Int
+                let stat: StatDefinition
+                
+                private enum CodingKeys : String, CodingKey {
+                    case baseStat = "base_stat", stat
+                }
+                
+                struct StatDefinition: Decodable {
+                    let name: String
+                }
+            }
+            
             private enum CodingKeys : String, CodingKey {
-                case id, name, height, weight, baseExperience = "base_experience", sprites, types
+                case id, name, height, weight, baseExperience = "base_experience", sprites, types, stats
             }
         }
     }
