@@ -11,9 +11,9 @@ import UIKit
 class BarIndicatorView : UIView {
     
     struct VisualDimensions {
-        static let barHeight : CGFloat = 30
-        static let cornerRadius : CGFloat  = 15
-        static let gapBetweenTitleAndBar : CGFloat = 5
+        static let barHeight : CGFloat = 40
+        static let cornerRadius : CGFloat  = 20
+        static let gapBetweenTitleAndBar : CGFloat = 10
     }
     
     private var titleLabel = UILabel().with {
@@ -21,6 +21,14 @@ class BarIndicatorView : UIView {
         $0.font = UIFont.boldSystemFont(ofSize: 20)
         $0.textColor = .white
         $0.numberOfLines = 1
+    }.withoutAutoConstraints()
+    
+    private var numericLabel = UILabel().with {
+        $0.textAlignment = .left
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.textColor = .white
+        $0.numberOfLines = 1
+        $0.textColor = UIColor.white.withAlphaComponent(0.5)
     }.withoutAutoConstraints()
     
     private let backgroundView = UIView().with {
@@ -33,6 +41,7 @@ class BarIndicatorView : UIView {
     }.withoutAutoConstraints()
     
     func configureWith(viewModel: BarRepresentable, maximumMetricUnit: Float, animated: Bool = true) {
+        numericLabel.attributedText = attributedStringForStatsWith(numericValue: Int(viewModel.value()), maximumNumericValue: Int(maximumMetricUnit))
         
         titleLabel.text = viewModel.title()
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -40,6 +49,7 @@ class BarIndicatorView : UIView {
         addSubview(titleLabel)
         
         addSubview(backgroundView)
+        addSubview(numericLabel)
         
         barView.layer.backgroundColor = viewModel.color().cgColor
         addSubview(barView)
@@ -59,7 +69,9 @@ class BarIndicatorView : UIView {
             barView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
             bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
             trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-            barView.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: barWidth)
+            barView.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: barWidth),
+            backgroundView.trailingAnchor.constraint(equalTo: numericLabel.trailingAnchor, constant: 20),
+            numericLabel.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
         ])
         
         setNeedsLayout()
@@ -73,6 +85,14 @@ class BarIndicatorView : UIView {
                 self.barView.alpha = 1
             }
         }
+    }
+    
+    private func attributedStringForStatsWith(numericValue: Int, maximumNumericValue: Int) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: "\(numericValue)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.4)])
+        
+        attributedString.append(NSMutableAttributedString(string: " / \(maximumNumericValue)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.8)]))
+        
+        return attributedString
     }
     
     struct ViewModel : BarRepresentable {
