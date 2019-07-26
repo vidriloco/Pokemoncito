@@ -27,7 +27,7 @@ class PokemonDetailsViewController : UITableViewController {
     struct BlockDetailsViewCell {
         static let basicHeight : Float = 350
         static let typesHeight : Float = 150
-        static let powersHeight : Float = 500
+        static let powersHeight : Float = 600
     }
     
     init(apiDevProvider: PokemonAPIProvider, pokemon: Pokemon) {

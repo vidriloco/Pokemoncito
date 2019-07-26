@@ -55,8 +55,8 @@ class PokemonTypeTableViewCell : UITableViewCell {
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
-            contentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 30)
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            contentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 20)
             ])
         
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
